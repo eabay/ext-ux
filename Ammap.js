@@ -9,7 +9,7 @@ Ext.apply(Ammap, {
 
 	// This function can be used to set only one setting on the fly.
     setSetting : function(setting, value) {
-        var setting = String.format(<settings><{0}>{1}</{0}></settings>, setting, value);
+        var setting = String.format('<settings><{0}>{1}</{0}></settings>', setting, value);
 
         this.map.setSettings(setting);
     },
