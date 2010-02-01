@@ -1,4 +1,4 @@
-﻿Ammap = new Ext.util.Observable();
+Ammap = new Ext.util.Observable();
 
 Ext.apply(Ammap, {
 	map : null,
