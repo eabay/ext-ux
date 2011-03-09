@@ -1,3 +1,9 @@
+/**
+ * ExtJS component to display number of items per page
+ * 
+ * @copyright       2010 Erhan Abay
+ * @author          Erhan Abay
+ */
 Ext.ux.PerPageField = Ext.extend(Object, {
 
 	beforeText : '',
@@ -7,12 +13,12 @@ Ext.ux.PerPageField = Ext.extend(Object, {
 		Ext.apply(this, config);
 	},
 
-	init : function(grid) {
-		this.grid = grid;
+	init : function(toolbar) {
+		this.toolbar = toolbar;
 
-		this.grid.on({
+		this.toolbar.on({
 			render : function() {
-				this.grid.bottomToolbar.add(['-', '-',
+				this.toolbar.add(['-', '-',
 						this.beforeText, this.combo,
 						this.afterText]);
 			},
@@ -26,7 +32,7 @@ Ext.ux.PerPageField = Ext.extend(Object, {
 			width : 50,
 			listClass : 'x-combo-list-small',
 			maskRe : /^[0-9]$/,
-			value : grid.bottomToolbar.pageSize,
+			value : toolbar.pageSize,
 			listeners : {
 				'collapse' : function(f) {
 					this.triggerEvent(f);
@@ -47,10 +53,10 @@ Ext.ux.PerPageField = Ext.extend(Object, {
 			start : 0
 		};
 		var v = parseInt(f.getRawValue());
-		this.grid.store.baseParams = this.grid.store.baseParams || {};
-		this.grid.store.baseParams['limit'] = v;
-		this.grid.bottomToolbar.pageSize = v;
-		this.grid.store.reload({
+		this.toolbar.store.baseParams = this.toolbar.store.baseParams || {};
+		this.toolbar.store.baseParams['limit'] = v;
+		this.toolbar.pageSize = v;
+		this.toolbar.store.reload({
 			params : o
 		});
 	}
