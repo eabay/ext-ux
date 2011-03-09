@@ -62,12 +62,23 @@ Ext.ux.data.CacheStore = Ext.extend(Ext.data.Store, {
     
     /**
      * Returns key for data stored in {@link #cache}.
+     * Requires phpjs ksort function
      * @param {Object} options See {@link Ext.data.Store#load}
      * @return {String} urlencoded options object
      * @private
      */
-    getCacheKey: function(options) {
-        return options ? Ext.urlEncode(options, this.prefix) : false;
+    getCacheKey: function(params) {
+    	if (!params) {
+    		return false;
+    	}
+    	
+    	Ext.iterate(params, function(key, value) {
+    		if (Ext.isEmpty(value)) {
+    			delete params[key];
+    		}
+    	});
+    	
+        return Ext.urlEncode(ksort(params), this.prefix);
     }
 });
 
