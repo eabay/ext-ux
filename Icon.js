@@ -9,11 +9,14 @@ Ext.ux.Icon = Ext.extend(Object, {
     },
     
     css: function(icon) {
-    	if(!Ext.util.CSS.getRule('.icon-'+icon))
-    	    Ext.util.CSS.createStyleSheet('.icon-'+icon+' {background-image: url('+this.url+icon+'.'+this.ext+') !important;}');
+    	var name = icon.replace(/\//g, '-');
+    	
+    	if(!Ext.util.CSS.getRule('.icon-'+name)) {
+    		Ext.util.CSS.createStyleSheet('.icon-'+name+' {background-image: url('+this.url+icon+'.'+this.ext+') !important;}');
+    	}
         
         Ext.util.CSS.refreshCache();
         
-        return 'icon-'+icon;
+        return 'icon-'+name;
     }
 });
